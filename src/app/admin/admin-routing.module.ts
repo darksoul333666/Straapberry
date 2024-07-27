@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminListProductsComponent } from './components/admin-list-products/admin-list-products.component';
-import { AdminCreateOrUpdateProductComponent } from './components/admin-create-or-update-product/admin-create-or-update-product.component';
+import { AdminListProductsComponent } from './pages/admin-list-products/admin-list-products.component';
+import { AdminCreateOrUpdateProductComponent } from './pages/admin-create-or-update-product/admin-create-or-update-product.component';
 
 const routes: Routes = [
   {
