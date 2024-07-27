@@ -1,4 +1,11 @@
 Changelog
+## [1.4.0](https://github.com/darksoul333666/Straapberry/compare/v1.3.1...v1.4.0) (2024-07-27)
+
+
+### ✨ Features
+
+* modules, routing and pages for authentication were added ([a2a0b5f](https://github.com/darksoul333666/Straapberry/commit/a2a0b5f0df848ddac0444eb7acde0e52ef4a52c3))
+
 ### [1.3.1](https://github.com/darksoul333666/Straapberry/compare/v1.3.0...v1.3.1) (2024-07-27)
 
 
