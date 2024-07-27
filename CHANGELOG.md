@@ -1,4 +1,11 @@
 Changelog
+## [1.2.0](https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/compare/v1.1.0...v1.2.0) (2024-07-27)
+
+
+### ✨ Features
+
+* routing and module for admin added ([7a5962b](https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/commit/7a5962b971d82ecb954e4b7ba39cda9c3e9f8643))
+
 ## 1.1.0 (2024-07-27)
 
 
