@@ -6,11 +6,6 @@ import { ClientShoppintCartComponent } from './pages/client-shoppint-cart/client
 
 const routes: Routes = [
     {
-        path: '',
-        redirectTo: '/client/home',
-        pathMatch: 'full'
-    },
-    {
         path: 'home',
         component: ClientHomeComponent
     },
