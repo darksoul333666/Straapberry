@@ -1,0 +1,7 @@
+{
+  "name": "Straapberry",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
