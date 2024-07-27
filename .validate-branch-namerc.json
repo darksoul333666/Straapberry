@@ -1,0 +1,4 @@
+{
+  "pattern": "^(main|dev|uat|qa){1}$|^(feature|fix|hotfix|release|ci|docs|style|chore|test|build|revert)\/.+$",
+  "errorMsg": "La rama no cumple con el estandar definido, ejemplo: feature/, fix/, hotfix/, release/, ci/, docs/, style/, chore/, test/, build/, revert/"
+}
