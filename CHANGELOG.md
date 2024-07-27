@@ -1,4 +1,12 @@
 Changelog
+## [1.3.0](https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/compare/v1.2.0...v1.3.0) (2024-07-27)
+
+
+### ✨ Features
+
+* changing carpet name ([2a7eec7](https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/commit/2a7eec7d6e92ff13a6bfc41b5de7a28999a2f4b9))
+* client modules pages and routing were added ([1a8ef11](https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/commit/1a8ef11ae2c733ef3e3cee8f3b5bedd748c82254))
+
 ## [1.2.0](https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/compare/v1.1.0...v1.2.0) (2024-07-27)
 
 
