@@ -1,4 +1,11 @@
 Changelog
+## [1.6.0](https://github.com/darksoul333666/Straapberry/compare/v1.5.0...v1.6.0) (2024-07-27)
+
+
+### ✨ Features
+
+* adding storage and functions to handle auth, login, and register of users ([fa60086](https://github.com/darksoul333666/Straapberry/commit/fa600860be63d8860420893e50f6e3627331dd97))
+
 ## [1.5.0](https://github.com/darksoul333666/Straapberry/compare/v1.4.0...v1.5.0) (2024-07-27)
 
 
