@@ -40,10 +40,10 @@
       "section": "✅ Testing"
     }
   ],
-  "commitUrlFormat": "https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/commit/{{hash}}",
-  "compareUrlFormat": "https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/compare/{{previousTag}}...{{currentTag}}",
+  "commitUrlFormat": "https://github.com/darksoul333666/Straapberry/commit/{{hash}}",
+  "compareUrlFormat": "https://github.com/darksoul333666/Straapberry/compare/{{previousTag}}...{{currentTag}}",
   "issuePrefixes": [
     "#"
   ],
-  "issueUrlFormat": "https://github.com/lumston/lumston-medusa-typescript-angular-vristo-frontend/issues/{{id}}"
+  "issueUrlFormat": "https://github.com/darksoul333666/Straapberry/issues/{{id}}"
 }
