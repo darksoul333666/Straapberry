@@ -1,4 +1,11 @@
 Changelog
+### [1.3.1](https://github.com/darksoul333666/Straapberry/compare/v1.3.0...v1.3.1) (2024-07-27)
+
+
+### 🐛 Bug Fixes
+
+* changing repository name ([ee644b5](https://github.com/darksoul333666/Straapberry/commit/ee644b53faa4d506435c38dc01763246664efb88))
+
 ## [1.3.0](https://github.com/darksoul333666/Straapberry/compare/v1.2.0...v1.3.0) (2024-07-27)
 
 
