@@ -1,4 +1,11 @@
 Changelog
+## [1.5.0](https://github.com/darksoul333666/Straapberry/compare/v1.4.0...v1.5.0) (2024-07-27)
+
+
+### ✨ Features
+
+* colors, and font were added ([724b881](https://github.com/darksoul333666/Straapberry/commit/724b8813c7cc6c39d653fef8bdc7ecf4caf15cf2))
+
 ## [1.4.0](https://github.com/darksoul333666/Straapberry/compare/v1.3.1...v1.4.0) (2024-07-27)
 
 
