@@ -1,4 +1,15 @@
 Changelog
+## [1.7.0](https://github.com/darksoul333666/Straapberry/compare/v1.6.0...v1.7.0) (2024-07-28)
+
+
+### ✨ Features
+
+* errors handled in register and login ([63e3971](https://github.com/darksoul333666/Straapberry/commit/63e3971bbd2b248de1d03038c5f49e2f3a787017))
+* forms elements stylized ([d071d30](https://github.com/darksoul333666/Straapberry/commit/d071d3043fe076c502448bad72677511dd8649f5))
+* logic for register and login ([ff33cfe](https://github.com/darksoul333666/Straapberry/commit/ff33cfeb3b79ede2d4e2526cb7d2da2ddef4f290))
+* navigation in login according to role user ([d8f1802](https://github.com/darksoul333666/Straapberry/commit/d8f180293aa9c0dd088d00938c2a59b0dfb46f49))
+* routing changed for handle auth navigation ([d859e67](https://github.com/darksoul333666/Straapberry/commit/d859e67c08477c588d26c5b7deab377d1198d2cc))
+
 ## [1.6.0](https://github.com/darksoul333666/Straapberry/compare/v1.5.0...v1.6.0) (2024-07-27)
 
 
