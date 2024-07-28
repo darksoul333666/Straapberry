@@ -5,11 +5,15 @@ ion-input.custom-input, ion-textarea.custom-textarea, ion-select.custom-select {
     --box-shadow: none !important;
     --padding-start: 25px;
     --padding-end: 25px;
+    width: 100%;
+    --highlight-color-focused: unset;
+
 }
 
-ion-item {
+.input-container {
     --box-shadow: none !important;
     --border-color: transparent !important;
+    margin-top: 15px;
 }
 
 ion-select.custom-select {
@@ -23,4 +27,14 @@ ion-select::part(icon) {
     left: auto;
     width: 22px;
     height: 22px;
+}
+
+ion-content {
+    --background: var(--ion-color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
 }
