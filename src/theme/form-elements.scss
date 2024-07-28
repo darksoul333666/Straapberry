@@ -1,0 +1,26 @@
+ion-input.custom-input, ion-textarea.custom-textarea, ion-select.custom-select {
+    --border-radius: 8px;
+    --border-color: transparent !important;
+    --background: var(--input-background);
+    --box-shadow: none !important;
+    --padding-start: 25px;
+    --padding-end: 25px;
+}
+
+ion-item {
+    --box-shadow: none !important;
+    --border-color: transparent !important;
+}
+
+ion-select.custom-select {
+    --padding-end: 40px;
+}
+
+ion-select::part(icon) {
+    color: #635353;
+    position: absolute;
+    right: 10px;
+    left: auto;
+    width: 22px;
+    height: 22px;
+}
