@@ -5,25 +5,25 @@
 </ion-header>
 <ion-content [fullscreen]="true">
   <div class="content-container">
-    @for( product of mockProducts; track product ) {
-        <div class="product-container">
-          <div class="image-container">
-            <ion-img src="{{ product.image }}" alt="{{ product.name }}" class="image-product"></ion-img>
-          </div>
-          <div class="content-product">
-            <ion-text color="primary">
-              {{ product.name }}
-            </ion-text>
-            <ion-text color="danger">
-              {{ product.price | currency }}
-            </ion-text>
-          </div>
-          <div class="footer-container">
-            <ion-icon class="touchable icon-medium" color="primary"
-            (click)="onUpdateClick(product.id)" name="create-outline"></ion-icon>
-            <ion-icon class="touchable icon-medium" color="danger" name="trash-outline"></ion-icon>
-          </div>
-        </div>
+    @for( product of products | async; track product ) {
+    <div class="product-container">
+      <div class="image-container">
+        <ion-img src="{{ product.image }}" alt="{{ product.name }}" class="image-product"></ion-img>
+      </div>
+      <div class="content-product">
+        <ion-text color="primary">
+          {{ product.name }}
+        </ion-text>
+        <ion-text color="danger">
+          {{ product.price | currency }}
+        </ion-text>
+      </div>
+      <div class="footer-container">
+        <ion-icon class="touchable icon-medium" color="primary" (click)="onUpdateClick(product.id)"
+          name="create-outline"></ion-icon>
+        <ion-icon class="touchable icon-medium" (click)="onDeleteClick(product.id)" color="danger" name="trash-outline"></ion-icon>
+      </div>
+    </div>
     }
   </div>
 </ion-content>
@@ -32,3 +32,5 @@
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>
+
+<ion-alert [isOpen]="isOpenAlert" trigger="present-alert" header="¿Desea borrar este producto?" [buttons]="alertButtons"></ion-alert>
