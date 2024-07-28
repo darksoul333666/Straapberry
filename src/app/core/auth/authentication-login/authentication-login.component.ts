@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { ErrorsMessage } from '../constants/auth.enum';
 
 @Component({
   selector: 'app-authentication-login',
@@ -10,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class AuthenticationLoginComponent  implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   public loading = false;
+  public errorLogin: string | null = null;
   constructor(
     public formBuilder: FormBuilder,
     private readonly authService: AuthService
@@ -26,7 +28,7 @@ export class AuthenticationLoginComponent  implements OnInit {
   public initForm(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['']
+      password: [null, [Validators.required]],
     })
   }
 
@@ -39,17 +41,21 @@ export class AuthenticationLoginComponent  implements OnInit {
     try {
       const user = await this.authService.login(this.loginForm.value);
       this.loading = false;
-    } catch (error) {
-      this.loading = false;
+    } catch (error: unknown) {
+      this.handleLoginError(error);
     }
   }
 
   /**
-   * Check if passwords match, returning boolean
-   * @returns boolean
+   * Handle login error and set loading to false, set error message for show it in UI
+   * @param error unknown
    */
-  public passwordsMatch(): boolean {
-    return this.loginForm.get('password')?.value === this.loginForm.get('confirmPassword')?.value
+  public handleLoginError(error: unknown) {
+    if(error instanceof Error) {
+      console.log(error.message);
+      this.errorLogin = ErrorsMessage[error.message as keyof typeof ErrorsMessage];
+      this.loading = false;
+    }
   }
 
   /**

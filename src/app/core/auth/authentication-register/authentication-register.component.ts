@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
+import { ErrorsMessage } from '../constants/auth.enum';
 
 @Component({
   selector: 'app-authentication-register',
@@ -10,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class AuthenticationRegisterComponent  implements OnInit{
   registerForm: FormGroup = new FormGroup({});
   public loading = false;
+  public errorRegister: string | null = null;
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService
@@ -39,12 +41,25 @@ export class AuthenticationRegisterComponent  implements OnInit{
    */
   public async onRegisterClick(): Promise<void> {
     try {
-      this.authService.addUser(this.registerForm.value)
+      const newUser = await this.authService.addUser(this.registerForm.value)
     } catch (error) {
-      console.log(error);
+      this.handleRegisterError(error);
     }
   }
 
+  /**
+   * Handle register error and set loading to false, set error message for show it in UI
+   * @param error unknown
+   */
+  public handleRegisterError(error: unknown) {
+    console.log("error", error);
+    
+    if(error instanceof Error) {
+      console.log(error.message);
+      this.errorRegister = ErrorsMessage[error.message as keyof typeof ErrorsMessage];
+      this.loading = false;
+    }
+  }
   /**
    * Function to check if passwords match
    * @returns boolean

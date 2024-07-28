@@ -16,6 +16,13 @@
       <div class="input-container">
         <ion-input class="custom-input" type="password" formControlName="confirmPassword" required placeholder="Confirmar contraseña"></ion-input>
       </div>
+      <div class="error-message">
+        @if(errorRegister) {
+          <ion-text color="danger">
+           {{errorRegister}}
+          </ion-text>
+        }
+      </div>
       <div class="input-container">
         <ion-button (click)="onRegisterClick()" [disabled]="!passwordsMatch() || !registerForm.valid"
         class="custom-button button-login" type="submit" shape="round">Registrarse</ion-button>
@@ -31,6 +38,6 @@
     </div>
   </div>
 </ion-content>
-<ion-loading [isOpen]="loading" duration="3000" message="Iniciando sesión" [duration]="3000" spinner="circles"></ion-loading>
+<ion-loading [isOpen]="loading" duration="3000" message="Registrando usuario" [duration]="3000" spinner="circles"></ion-loading>
 
 
