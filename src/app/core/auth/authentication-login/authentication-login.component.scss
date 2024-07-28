@@ -57,15 +57,6 @@
     flex-direction: column;
 }
 
-.touchable {
-    cursor: pointer;
-    transition: opacity 0.2s ease-in-out;
-}
-
-.touchable:active {
-    opacity: 0.6;
-}
-
 .candidate-text {
     font-size: small;
     margin-top: 20px
