@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { add, createOutline, trashOutline } from 'ionicons/icons';
-import { CATEGORY_PRODUCTS } from 'src/app/shared/constants/products.enum';
+import { CATEGORY_PRODUCTS_ID, CATEGORY_PRODUCTS_NAME } from 'src/app/shared/constants/products.enum';
 import { ROUTES } from 'src/app/shared/constants/routes';
 import { IProduct } from 'src/app/shared/interfaces/products';
 
@@ -12,88 +12,75 @@ import { IProduct } from 'src/app/shared/interfaces/products';
   styleUrls: ['./admin-list-products.component.scss'],
 })
 export class AdminListProductsComponent  implements OnInit {
-  mockProducts: IProduct[] = [
+   mockProducts: IProduct[] = [
     {
       id: 1,
-      name: 'Laptop HP Pavilion',
-      price: 750.00,
-      description: 'Laptop HP Pavilion 15 con procesador Intel Core i5, 8GB RAM, 256GB SSD.',
-      category: CATEGORY_PRODUCTS.COMPUTATORS,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
+      name: 'Smartphone XYZ',
+      price: 299.99,
+      description: 'Un smartphone de última generación con cámara de 64MP.',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.PHONES,
+        id: CATEGORY_PRODUCTS_ID.PHONES
+      },
+      image: 'https://example.com/images/smartphone_xyz.jpg'
     },
     {
       id: 2,
-      name: 'iPad Pro',
-      price: 999.99,
-      description: 'iPad Pro de 12.9 pulgadas, 256GB, Wi-Fi, Chip M1.',
-      category: CATEGORY_PRODUCTS.TABLETS,
-      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-UkBX4KMDEiEPOXLKmNKmXVKFQEoJmYMQRQ&s'
+      name: 'Laptop ABC',
+      price: 899.99,
+      description: 'Laptop potente con procesador i7 y 16GB de RAM.',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.COMPUTATORS,
+        id: CATEGORY_PRODUCTS_ID.COMPUTATORS
+      },
+      image: 'https://example.com/images/laptop_abc.jpg'
     },
     {
       id: 3,
-      name: 'Teclado Mecánico Razer',
-      price: 120.00,
-      description: 'Teclado mecánico Razer BlackWidow con iluminación RGB.',
-      category: CATEGORY_PRODUCTS.ACCESSORIES,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
+      name: 'Camiseta Casual',
+      price: 19.99,
+      description: 'Camiseta de algodón 100% con estampado moderno.',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.CLOTHES,
+        id: CATEGORY_PRODUCTS_ID.CLOTHES
+      },
+      image: 'https://example.com/images/camiseta_casual.jpg'
     },
     {
       id: 4,
-      name: 'iPhone 13',
-      price: 799.00,
-      description: 'iPhone 13 con 128GB de almacenamiento, pantalla Super Retina XDR de 6.1 pulgadas.',
-      category: CATEGORY_PRODUCTS.PHONES,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
+      name: 'Aspiradora Turbo',
+      price: 129.99,
+      description: 'Aspiradora potente con filtro HEPA para una limpieza profunda.',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.CLEANING,
+        id: CATEGORY_PRODUCTS_ID.CLEANING
+      },
+      image: 'https://example.com/images/aspiradora_turbo.jpg'
     },
     {
       id: 5,
-      name: 'Mouse Inalámbrico Logitech',
-      price: 50.00,
-      description: 'Mouse inalámbrico Logitech MX Master 3 con tecnología avanzada.',
-      category: CATEGORY_PRODUCTS.ACCESSORIES,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
+      name: 'Auriculares Bluetooth',
+      price: 79.99,
+      description: 'Auriculares inalámbricos con cancelación de ruido.',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.ACCESSORIES,
+        id: CATEGORY_PRODUCTS_ID.ACCESSORIES
+      },
+      image: 'https://example.com/images/auriculares_bluetooth.jpg'
     },
     {
       id: 6,
-      name: 'Tablet Samsung Galaxy Tab S7',
-      price: 650.00,
-      description: 'Samsung Galaxy Tab S7 de 11 pulgadas, 128GB, Wi-Fi, Snapdragon 865+.',
-      category: CATEGORY_PRODUCTS.TABLETS,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
-    },
-    {
-      id: 7,
-      name: 'Monitor Dell Ultrasharp',
-      price: 300.00,
-      description: 'Monitor Dell Ultrasharp de 24 pulgadas con resolución Full HD.',
-      category: CATEGORY_PRODUCTS.COMPUTATORS,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
-    },
-    {
-      id: 8,
-      name: 'Cargador Inalámbrico Anker',
-      price: 30.00,
-      description: 'Cargador inalámbrico Anker PowerWave compatible con iPhone y Android.',
-      category: CATEGORY_PRODUCTS.ACCESSORIES,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
-    },
-    {
-      id: 9,
-      name: 'Samsung Galaxy S21',
-      price: 850.00,
-      description: 'Samsung Galaxy S21 con 128GB de almacenamiento, pantalla Dynamic AMOLED 2X.',
-      category: CATEGORY_PRODUCTS.PHONES,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
-    },
-    {
-      id: 10,
-      name: 'Laptop Apple MacBook Pro',
-      price: 1299.99,
-      description: 'Apple MacBook Pro de 13 pulgadas con chip M1, 8GB RAM, 256GB SSD.',
-      category: CATEGORY_PRODUCTS.COMPUTATORS,
-      image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
+      name: 'Tableta Pro',
+      price: 349.99,
+      description: 'Tableta con pantalla de 10.5 pulgadas y lápiz óptico incluido.',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.TABLETS,
+        id: CATEGORY_PRODUCTS_ID.TABLETS
+      },
+      image: 'https://example.com/images/tableta_pro.jpg'
     }
   ];
+  
   constructor(
     private router: Router,
   ) { 

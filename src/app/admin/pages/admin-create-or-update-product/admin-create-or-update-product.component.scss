@@ -34,5 +34,8 @@
 .ion-text-center {
   justify-self: center;
   flex: 1;
-  margin-top: 10px;
+}
+
+ion-toast {
+  color: var(--ion-color-primary-contrast);
 }
