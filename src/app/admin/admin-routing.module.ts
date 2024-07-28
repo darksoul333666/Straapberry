@@ -9,6 +9,11 @@ const routes: Routes = [
     component: AdminListProductsComponent
   },
   {
+    path: 'create-or-update-product/:id',
+    component: AdminCreateOrUpdateProductComponent,
+    
+  },
+  {
     path: 'create-or-update-product',
     component: AdminCreateOrUpdateProductComponent,
     

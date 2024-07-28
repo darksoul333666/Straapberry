@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { addIcons } from 'ionicons';
 import { add, createOutline, trashOutline } from 'ionicons/icons';
 import { CATEGORY_PRODUCTS } from 'src/app/shared/constants/products.enum';
+import { ROUTES } from 'src/app/shared/constants/routes';
 import { IProduct } from 'src/app/shared/interfaces/products';
 
 @Component({
@@ -92,10 +94,16 @@ export class AdminListProductsComponent  implements OnInit {
       image: 'https://s3-eu-west-1.amazonaws.com/media.macnificos.com/Apple_landings/Mac_does_that/mac.png'
     }
   ];
-  constructor() { 
+  constructor(
+    private router: Router,
+  ) { 
     addIcons({ add, trashOutline, createOutline });
   }
 
   ngOnInit() {}
+
+  public onUpdateClick(productId: number): void {
+    this.router.navigate([`${ROUTES.CREATE_OR_UPDATE_PRODUCT}/${productId}`]);
+  }
 
 }

@@ -19,7 +19,8 @@
             </ion-text>
           </div>
           <div class="footer-container">
-            <ion-icon class="touchable icon-medium" color="primary" name="create-outline"></ion-icon>
+            <ion-icon class="touchable icon-medium" color="primary"
+            (click)="onUpdateClick(product.id)" name="create-outline"></ion-icon>
             <ion-icon class="touchable icon-medium" color="danger" name="trash-outline"></ion-icon>
           </div>
         </div>
@@ -27,7 +28,7 @@
   </div>
 </ion-content>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button>
+  <ion-fab-button routerLink="/admin/create-or-update-product">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>
 </ion-fab>

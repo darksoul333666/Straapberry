@@ -21,6 +21,7 @@ ion-content {
     width: 150px;
     min-width: 100px;
     margin: 10px;
+    height: 200px;
 }
 
 .image-container {
@@ -40,15 +41,15 @@ ion-content {
     align-items: center;
     padding: 10px;
     justify-content: center;
+    height: 70px;
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
-    align-items: center;
     width: 70%;
     align-self: center;
-    padding-bottom: 10px;
+    top: auto;
 }
 
 .icon-medium {
@@ -61,4 +62,8 @@ ion-content {
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 10px;
+}
+
+ion-title, ion-text {
+    text-align: center;
 }
