@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { CATEGORY_PRODUCTS_ID, CATEGORY_PRODUCTS_NAME, ErrorProducts } from '../constants/products.enum';
+import { CATEGORY_PRODUCTS_ID, ErrorProducts } from '../constants/products.enum';
 import { IProduct } from '../interfaces/products';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ProductService {
 
   async createProduct(product: IProduct): Promise<void> {
     const products = await this.getProducts();
-    products.push(product);
+    products.push({...product, id: uuidv4()});
     await this._storage?.set(this.PRODUCTS_KEY, JSON.stringify(products));
   }
 
@@ -42,8 +43,16 @@ export class ProductService {
     return products.filter(product => product.category.id === category);
   }
 
-  async getProductById(id: number): Promise<IProduct | null> {
+  async getProductById(id: string): Promise<IProduct | null> {
     const products = await this.getProducts();
     return products.find(product => product.id === id) || null;
+  }
+
+  async deleteProduct(id: string): Promise<void> {
+    const products = await this.getProducts();
+    const index = products.findIndex(product => product.id === id);
+    if (index == -1)  throw new Error(ErrorProducts.PRODUCT_NOT_FOUND);
+    products.splice(index, 1);
+    await this._storage?.set(this.PRODUCTS_KEY, JSON.stringify(products));
   }
 }

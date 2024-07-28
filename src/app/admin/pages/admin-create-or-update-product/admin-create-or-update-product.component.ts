@@ -14,7 +14,7 @@ import { ProductService } from 'src/app/shared/services/product.service';
 })
 export class AdminCreateOrUpdateProductComponent  implements OnInit {
   titlePage: string = TITLE_PAGE.CREATE;
-  public idProduct: number | undefined;
+  public idProduct: string | undefined;
   public isEditScreen: boolean = false;
   registerProductForm: FormGroup = new FormGroup({});
   public categories: ICategory[] = CATEGORIES;
@@ -38,7 +38,7 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
     this.registerProductForm = this.formBuilder.group({
       name: [null, [Validators.required]],
       price: [null, [Validators.required]],
-      image: [null, ],
+      image: ['https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg', ],
       description: [null, [Validators.required]],
       category: [null, [Validators.required]]
     })
@@ -54,6 +54,18 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
     if(!this.idProduct) return;
     this.isEditScreen = true;
     this.titlePage = TITLE_PAGE.UPDATE;
+    this.setInitialValues();
+  }
+
+  /**
+   * @returns void
+   * @function setInitialValues - set initial values
+   * @description set initial values using id retrived from route, and fetch product from service
+   */
+  public async setInitialValues(): Promise<void> {
+    const product = await this.productsService.getProductById(this.idProduct as string);
+    if(!product) throw new Error(ERRORS_MESSAGE.PRODUCT_NOT_FOUND);
+    this.registerProductForm.patchValue(product);
   }
 
   /**
@@ -61,8 +73,8 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
    * @function getIdFromRoute - get id from route 
    * @description get id from route and convert it to number
    */
-  public getIdFromRoute(): number | undefined {
-    return parseInt(this.route.snapshot.paramMap.get('id') as string) || undefined
+  public getIdFromRoute(): string | undefined {
+    return this.route.snapshot.paramMap.get('id') || undefined
   }
 
   /**

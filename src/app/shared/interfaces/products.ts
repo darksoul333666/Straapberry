@@ -1,7 +1,7 @@
 import { CATEGORY_PRODUCTS_ID, CATEGORY_PRODUCTS_NAME } from "../constants/products.enum";
 
 export interface IProduct {
-    id: number;
+    id: string;
     name: string;
     price: number;
     description: string;
