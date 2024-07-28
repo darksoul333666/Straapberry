@@ -1,4 +1,15 @@
 Changelog
+## [1.8.0](https://github.com/darksoul333666/Straapberry/compare/v1.7.0...v1.8.0) (2024-07-28)
+
+
+### ✨ Features
+
+* create and update products added, handlers, showin toasts and spinners ([5f482f6](https://github.com/darksoul333666/Straapberry/commit/5f482f611b38d45baf40c074f108109be40d8e66))
+* deleting product logic added ([58029ed](https://github.com/darksoul333666/Straapberry/commit/58029ed38bac710a9675567ed348936490fdd662))
+* list products added ([77ab822](https://github.com/darksoul333666/Straapberry/commit/77ab8228886cfbba86d8e626d1ac451060fb6d95))
+* ux for create and update product ([dc7f407](https://github.com/darksoul333666/Straapberry/commit/dc7f40755ac95a168a2efffcb120df469058f08f))
+* UX products list added ([f2c3176](https://github.com/darksoul333666/Straapberry/commit/f2c317657d7f8ea2c7b826f6f4b15509fb34ecbf))
+
 ## [1.7.0](https://github.com/darksoul333666/Straapberry/compare/v1.6.0...v1.7.0) (2024-07-28)
 
 
