@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ErrorsMessage } from '../constants/auth.enum';
+import { NavigationService } from '../../services/navigation.service';
+import { delay } from '../../functions/functions';
 
 @Component({
   selector: 'app-authentication-register',
@@ -14,7 +16,8 @@ export class AuthenticationRegisterComponent  implements OnInit{
   public errorRegister: string | null = null;
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly navigationService: NavigationService
   ) { }
 
   public ngOnInit() {
@@ -38,10 +41,16 @@ export class AuthenticationRegisterComponent  implements OnInit{
    * Function called when register button is clicked
    * @returns void
    * @throws Error if email already exists
+   * @function delay - to show loading animation for 2 almost seconds and navigate to initial page
    */
   public async onRegisterClick(): Promise<void> {
+    this.loading = true;
     try {
-      const newUser = await this.authService.addUser(this.registerForm.value)
+       await this.authService.addUser(this.registerForm.value);
+       await delay(2000);
+       this.loading = false;
+       await delay(1000);
+       this.navigationService.navigateToInitialPage();
     } catch (error) {
       this.handleRegisterError(error);
     }
@@ -52,8 +61,6 @@ export class AuthenticationRegisterComponent  implements OnInit{
    * @param error unknown
    */
   public handleRegisterError(error: unknown) {
-    console.log("error", error);
-    
     if(error instanceof Error) {
       console.log(error.message);
       this.errorRegister = ErrorsMessage[error.message as keyof typeof ErrorsMessage];

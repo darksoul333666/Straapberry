@@ -74,7 +74,7 @@ export class AuthService {
     }
     newUser.password = await bcrypt.hash(newUser.password, this.SALT_ROUNDS);
     const users = await this.getUsers();
-    users.push(newUser);
+    users.push({...newUser, isAdmin: false});
     await this._storage?.set(this.USERS_KEY, JSON.stringify(users));
   }
 

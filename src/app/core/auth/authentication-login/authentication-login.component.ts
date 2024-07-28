@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { ErrorsMessage } from '../constants/auth.enum';
+import { NavigationService } from '../../services/navigation.service';
+import { delay } from '../../functions/functions';
 
 @Component({
   selector: 'app-authentication-login',
@@ -14,7 +16,8 @@ export class AuthenticationLoginComponent  implements OnInit {
   public errorLogin: string | null = null;
   constructor(
     public formBuilder: FormBuilder,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly navigationService: NavigationService
   ) { }
 
   public ngOnInit() {
@@ -35,12 +38,16 @@ export class AuthenticationLoginComponent  implements OnInit {
   /**
    * Login user using email and password, calling login method of AuthService
    * @returns void
+   * @function delay - to show loading animation for 2 almost seconds and navigate to initial page
    */
   public async onLoginClick(): Promise<void> {
     this.loading = true;
     try {
-      const user = await this.authService.login(this.loginForm.value);
+      await this.authService.login(this.loginForm.value);
+      await delay(2000);
       this.loading = false;
+      await delay(1000);
+      this.navigationService.navigateToInitialPage();
     } catch (error: unknown) {
       this.handleLoginError(error);
     }

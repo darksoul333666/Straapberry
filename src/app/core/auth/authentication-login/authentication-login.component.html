@@ -8,18 +8,19 @@
         <ion-input class="custom-input" type="text" formControlName="email" placeholder="Email"></ion-input>
       </div>
       <div class="input-container">
-        <ion-input class="custom-input" type="password" formControlName="password" placeholder="Contraseña"></ion-input>
+        <ion-input class="custom-input" type="password" formControlName="password"
+          placeholder="Contraseña"></ion-input>
       </div>
       <div class="error-message">
         @if(errorLogin) {
-          <ion-text color="danger">
-           {{errorLogin}}
-          </ion-text>
+        <ion-text color="danger">
+          {{errorLogin}}
+        </ion-text>
         }
       </div>
       <div class="input-container">
-        <ion-button (click)="onLoginClick()" [disabled]="!loginForm.valid"
-        class="custom-button button-login" type="submit" shape="round">Ingresar</ion-button>
+        <ion-button (click)="onLoginClick()" [disabled]="!loginForm.valid" class="custom-button button-login"
+          type="submit" shape="round">Ingresar</ion-button>
       </div>
     </form>
     <div class="footer-container">
@@ -35,6 +36,5 @@
     </div>
   </div>
 </ion-content>
-<ion-loading [isOpen]="loading" duration="3000" message="Iniciando sesión" [duration]="3000" spinner="circles"></ion-loading>
-
-
+<ion-loading [isOpen]="loading" duration="3000" message="Iniciando sesión" [duration]="3000"
+  spinner="circles"></ion-loading>
