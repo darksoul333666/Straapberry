@@ -1,10 +1,44 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-            <ion-back-button color="light" defaultHref="/admin/list-products"></ion-back-button>
-      </ion-buttons>
-      <ion-title class="ion-text-center">{{ titlePage }}</ion-title>
-    </ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="light" defaultHref="/admin/list-products"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">{{ titlePage }}</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true">
+  <form action="" class="form-container" [formGroup]="registerProductForm">
+    <div class="image-product-container">
+      <svg width="65" height="77" class="image-product" viewBox="0 0 65 77" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M8.74999 -0.333313H48.3333L64.1667 15V68.6667C64.1667 70.7 63.3326 72.6501 61.8479 74.0878C60.3633 75.5256 58.3496 76.3334 56.25 76.3334H8.74999C6.65036 76.3334 4.63673 75.5256 3.15207 74.0878C1.6674 72.6501 0.833328 70.7 0.833328 68.6667V7.33335C0.833328 5.30003 1.6674 3.34998 3.15207 1.9122C4.63673 0.474422 6.65036 -0.333313 8.74999 -0.333313ZM45.0558 7.33335H8.74999V68.6667H56.25V18.174H45.0558V7.33335ZM44.375 45.6667C43.3252 45.6667 42.3184 45.2628 41.576 44.5439C40.8337 43.825 40.4167 42.85 40.4167 41.8334C40.4167 40.8167 40.8337 39.8417 41.576 39.1228C42.3184 38.4039 43.3252 38 44.375 38C45.4248 38 46.4316 38.4039 47.174 39.1228C47.9163 39.8417 48.3333 40.8167 48.3333 41.8334C48.3333 42.85 47.9163 43.825 47.174 44.5439C46.4316 45.2628 45.4248 45.6667 44.375 45.6667ZM16.6667 53.3334L28.8187 41.8334L40.4167 53.3334L44.375 49.5L48.3333 53.3334V61H16.6667V53.3334Z"
+          fill="#686B75" />
+      </svg>
+      <ion-text color="primary" class="ion-text-center">Carga tu imagen</ion-text>
+    </div>
+    <div class="input-container">
+      <ion-input class="custom-input" type="text" formControlName="name" placeholder="Nombre"></ion-input>
+    </div>
+    <div class="input-container">
+      <ion-input class="custom-input" type="number" formControlName="price" placeholder="Precio"></ion-input>
+    </div>
+    <div class="input-container">
+      <ion-select class="custom-select" formControlName="category" placeholder="Categoría">
+        @for (category of categories; track category) {
+        <ion-select-option [value]="category">
+          {{ category }}
+        </ion-select-option>
+        }
+      </ion-select>
+    </div>
+    <div class="input-container">
+      <ion-textarea [rows]="5" class="custom-textarea" formControlName="description" placeholder="Descripción">
+      </ion-textarea>
+    </div>
+    <div class="input-container">
+      <ion-button expand="block" [disabled]="!registerProductForm.valid" class="custom-button" type="submit"
+        shape="round">Guardar producto</ion-button>
+    </div>
+  </form>
 </ion-content>

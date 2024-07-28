@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CATEGORY_PRODUCTS } from 'src/app/shared/constants/products.enum';
 
 @Component({
   selector: 'app-admin-create-or-update-product',
@@ -10,12 +12,26 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
   titlePage: string = 'Agregar producto';
   public idProduct: number | undefined;
   public isEditScreen: boolean = false;
+  registerProductForm: FormGroup = new FormGroup({});
+  public categories: string[] = Object.values(CATEGORY_PRODUCTS);
   constructor(
     private readonly route: ActivatedRoute,
+    private readonly formBuilder: FormBuilder
   ) { }
 
   public ngOnInit() {
    this.setModeScreenAndTitle();
+   this.initForm();
+  }
+
+  public initForm(): void {
+    this.registerProductForm = this.formBuilder.group({
+      name: [null, [Validators.required]],
+      price: [null, [Validators.required]],
+      image: [null, ],
+      description: [null, [Validators.required]],
+      category: [null, [Validators.required]]
+    })
   }
 
   /**
