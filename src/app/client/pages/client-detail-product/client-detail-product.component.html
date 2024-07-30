@@ -1,3 +1,25 @@
-<p>
-  client-detail-product works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/client/menu/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="detail-product-container">
+    <div class="image-product-container">
+      @if(product | async) {
+        <ion-img class="image-product" [src]="(product | async)?.image"></ion-img>
+      }
+    </div>
+    <div class="content-product-container">
+      <ion-text class="product-name"> {{(product | async)?.name}} </ion-text>
+      <ion-text class="product-price"> {{(product | async)?.price | currency}} </ion-text>
+      <ion-text class="product-description"> {{(product | async)?.description}}</ion-text>
+    </div>
+  </div>
+  <div class="button-container" >
+    <ion-button (click)="addOneToProductFromCart()" expand="block" class="custom-button">Agregar al carrito</ion-button>
+  </div>
+</ion-content>

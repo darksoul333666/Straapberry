@@ -93,7 +93,7 @@ export class CartService {
   async init() {
     const storage = await this.storage.create();
     this._storage = storage;
-    await this._storage.set(this.CART_KEY, JSON.stringify(this.initialProducts));
+    // await this._storage.set(this.CART_KEY, JSON.stringify(this.initialProducts));
   }
 
   async getCartProducts(): Promise<ICartProduct[]> {
@@ -105,6 +105,10 @@ export class CartService {
 
   async addProductToCart(product: IProduct): Promise<void> {
     const cart = await this.getCartProducts();
+    const existingProduct = cart.find((p) => p.id === product.id);
+    if (existingProduct) {
+      return this.increaseProductQuantity(product.id);
+    }
     cart.push({ ...product, quantity: 1 });
     await this._storage?.set(this.CART_KEY, cart);
   }

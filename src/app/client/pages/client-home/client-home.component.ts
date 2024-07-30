@@ -4,7 +4,7 @@ import { addIcons } from 'ionicons';
 import { cartOutline } from 'ionicons/icons';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/services/auth.service';
-import { CATEGORIES } from 'src/app/shared/constants/products.enum';
+import { CATEGORIES, CATEGORY_PRODUCTS_ID, CATEGORY_PRODUCTS_NAME } from 'src/app/shared/constants/products.enum';
 import { ROUTES } from 'src/app/shared/constants/routes';
 import { ICategory, IProduct } from 'src/app/shared/interfaces/products';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -21,7 +21,74 @@ export class ClientHomeComponent implements OnInit {
   public products = new BehaviorSubject<IProduct[]>([]);
   public totalItemsInCart = new BehaviorSubject<number>(0);
   public routerSubscription: Subscription | undefined;
-
+  private initialProducts: IProduct[] = [
+    {
+      id: '1',
+      name: 'Product 1',
+      price: 100,
+      description: 'Product 1 description',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.ACCESSORIES,
+        id: CATEGORY_PRODUCTS_ID.ACCESSORIES
+      },
+      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
+    },
+    {
+      id: '2',
+      name: 'Product 2',
+      price: 100,
+      description: 'Product 2 description',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.ACCESSORIES,
+        id: CATEGORY_PRODUCTS_ID.ACCESSORIES
+      },
+      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
+    },
+    {
+      id: '3',
+      name: 'Product 3',
+      price: 100,
+      description: 'Product 3 description',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.ACCESSORIES,
+        id: CATEGORY_PRODUCTS_ID.ACCESSORIES
+      },
+      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
+    },
+    {
+      id: '4',
+      name: 'Product 4',
+      price: 100,
+      description: 'Product 4 description',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.ACCESSORIES,
+        id: CATEGORY_PRODUCTS_ID.ACCESSORIES
+      },
+      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
+    },
+    {
+      id: '5',
+      name: 'Product 5',
+      price: 100,
+      description: 'Product 5 description',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.ACCESSORIES,
+        id: CATEGORY_PRODUCTS_ID.ACCESSORIES
+      },
+      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
+    },
+    {
+      id: '6',
+      name: 'Product 6',
+      price: 100,
+      description: 'Product 6 description',
+      category: {
+        name: CATEGORY_PRODUCTS_NAME.ACCESSORIES,
+        id: CATEGORY_PRODUCTS_ID.ACCESSORIES
+      },
+      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
+    }
+  ];
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService,
