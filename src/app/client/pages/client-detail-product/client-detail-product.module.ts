@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientFavoritesComponent } from './client-favorites.component';
 import { RouterModule, Routes } from '@angular/router';
-
+import { ClientDetailProductComponent } from './client-detail-product.component';
+import { IonicModule } from '@ionic/angular';
 const routes: Routes = [
   {
     path: '',
-    component: ClientFavoritesComponent
+    component: ClientDetailProductComponent
   }
-]
+];
 
 @NgModule({
-  declarations: [ClientFavoritesComponent],
+  declarations: [],
   imports: [
+    IonicModule,
     CommonModule,
     RouterModule.forChild(routes)
-  ],
-  exports: [ClientFavoritesComponent]
+  ]
 })
-export class ClientFavoritesModule { }
+export class ClientDetailProductModule { }
