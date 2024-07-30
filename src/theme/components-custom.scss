@@ -1,0 +1,17 @@
+@import '../theme/variables.scss';
+
+ion-toast {
+  color: var(--ion-color-primary-contrast);
+}
+
+.product-container {
+  display: flex;
+  color: var(--ion-color-primary-contrast);
+  background-color: var(--input-background);
+  border-radius: 10px;
+  flex-direction: column;
+  width: 150px;
+  min-width: 100px;
+  margin: 10px;
+  height: 200px;
+}

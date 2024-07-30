@@ -1,5 +1,3 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
 :root {
 	--ion-color-primary: #353C59;
 	--ion-color-primary-rgb: 53,60,89;
@@ -63,5 +61,8 @@
 	--ion-color-dark-contrast-rgb: 255,255,255;
 	--ion-color-dark-shade: #292929;
 	--ion-color-dark-tint: #444444;
+
+	--button-text-color: #ffffff;
+	--input-background: #E0E3F0;
 
 }

@@ -1,0 +1,42 @@
+@import '../admin-list-products/admin-list-products.component.scss';
+
+:host {
+  ion-title.ion-text-center {
+    margin-right: 48px;
+  }
+}
+
+.form-container {
+  width: 90%;
+  margin: auto;
+}
+
+.image-product-container {
+  background-color: var(--input-background);
+  border: 1px dashed var(--ion-color-primary);
+  width: 100%;
+  height: 160px;
+  border-radius: 10px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.image-product {
+  margin-top: 10px;
+  width: 65px;
+  height: 75px;
+}
+.image-product-loaded {
+  width: 80%;
+  height: 160px;
+  margin: auto;
+  object-fit: cover;
+}
+.ion-text-center {
+  justify-self: center;
+  flex: 1;
+}

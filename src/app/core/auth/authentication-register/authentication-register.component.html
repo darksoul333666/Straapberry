@@ -1,3 +1,44 @@
-<p>
-  authentication-register works!
-</p>
+<ion-content class="background-container">
+  <ion-card class="image-container">
+    <img src="assets/images/logotipo.png" class="logo" alt="logo">
+  </ion-card>
+  <div class="content-container">
+    <form action="" [formGroup]="registerForm" class="form-container">
+      <div class="input-container">
+        <ion-input class="custom-input" type="text" formControlName="name" required placeholder="Nombre"></ion-input>
+      </div>
+      <div class="input-container">
+        <ion-input class="custom-input" type="text" formControlName="email" required placeholder="Email"></ion-input>
+      </div>
+      <div class="input-container">
+        <ion-input class="custom-input" type="password" formControlName="password" required
+          placeholder="Contraseña"></ion-input>
+      </div>
+      <div class="input-container">
+        <ion-input class="custom-input" type="password" formControlName="confirmPassword" required
+          placeholder="Confirmar contraseña"></ion-input>
+      </div>
+      <div class="error-message">
+        @if(errorRegister) {
+        <ion-text color="danger">
+          {{errorRegister}}
+        </ion-text>
+        }
+      </div>
+      <div class="input-container">
+        <ion-button (click)="onRegisterClick()" [disabled]="!passwordsMatch() || !registerForm.valid"
+          class="custom-button button-login" type="submit" shape="round">Registrarse</ion-button>
+      </div>
+    </form>
+    <div class="footer-container">
+      <ion-text color="secondary">
+        ¿Ya tienes cuenta?
+      </ion-text>
+      <ion-text color="primary" class="touchable" [routerLink]="['/auth/login']">
+        Inicia sesión
+      </ion-text>
+    </div>
+  </div>
+</ion-content>
+<ion-loading [isOpen]="loading" duration="3000" message="Registrando usuario" [duration]="3000"
+  spinner="circles"></ion-loading>

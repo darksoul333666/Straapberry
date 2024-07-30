@@ -1,0 +1,57 @@
+@import '../../../../theme/variables.scss';
+@import '../../../../theme/button.scss';
+
+ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    height: 50px;
+    display: flex;
+}
+
+ion-content {
+    --background: var(--ion-color-primary-contrast);
+}
+
+.image-container {
+    width: 150px;
+    height: 100px;
+    align-self: center;
+}
+
+.image-product {
+    width: 100%;
+    height: 100%;
+}
+
+.content-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    justify-content: center;
+    height: 70px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    align-self: center;
+    top: auto;
+}
+
+.icon-medium {
+    width: 22px;
+    height: 22px;
+}
+
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+ion-title, ion-text {
+    text-align: center;
+}

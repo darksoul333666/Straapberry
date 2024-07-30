@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientRoutingModule } from './client-routing.module';
-
+import { MenuNavigationModule } from './menu-navigation/menu-navigation.module';
+import { ClientShoppintCartComponent } from './pages/client-shoppint-cart/client-shoppint-cart.component';
+import { IonicModule } from '@ionic/angular';
+import { ClientDetailProductComponent } from './pages/client-detail-product/client-detail-product.component';
 @NgModule({
-  declarations: [],
+  declarations: [ClientShoppintCartComponent, ClientShoppintCartComponent, ClientDetailProductComponent],
   imports: [
+    IonicModule,
     CommonModule,
-    ClientRoutingModule
+    MenuNavigationModule,
   ]
 })
 export class ClientModule { }

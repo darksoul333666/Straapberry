@@ -1,0 +1,40 @@
+ion-input.custom-input, ion-textarea.custom-textarea, ion-select.custom-select {
+    --border-radius: 8px;
+    --border-color: transparent !important;
+    --background: var(--input-background);
+    --box-shadow: none !important;
+    --padding-start: 25px;
+    --padding-end: 25px;
+    width: 100%;
+    --highlight-color-focused: unset;
+
+}
+
+.input-container {
+    --box-shadow: none !important;
+    --border-color: transparent !important;
+    margin-top: 15px;
+}
+
+ion-select.custom-select {
+    --padding-end: 40px;
+}
+
+ion-select::part(icon) {
+    color: #635353;
+    position: absolute;
+    right: 10px;
+    left: auto;
+    width: 22px;
+    height: 22px;
+}
+
+ion-content {
+    --background: var(--ion-color-primary);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
