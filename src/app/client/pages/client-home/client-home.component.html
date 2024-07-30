@@ -1,3 +1,33 @@
-<p>
-  client-home works!
-</p>
+<ion-content fullscreen="true">
+    <div class="header-container">
+        <ion-icon (click)="goToCart()" class="touchable icon-medium" name="cart-outline" size="large"></ion-icon>
+        <ion-badge class="badge">{{totalItemsInCart | async}}</ion-badge>
+    </div>
+  <div class="content-container">
+    <ion-text color="primary" class="title">
+        Hola {{username}}
+    </ion-text>
+    <ion-text color="secondary" class="subtitle">
+        ¿Vamos a comprar algo?
+    </ion-text>
+    <div class="filters-container">
+        @for(category of categories; track category){
+        <div class="touchable filter-container">
+            <ion-text class="touchable filter-name"> {{category.name}} </ion-text>
+        </div>
+        }
+    </div>
+
+    <div class="products-container">
+        @for(product of products | async; track product){
+        <div class="touchable product-in-container" (click)="goToProduct(product.id)">
+                <ion-img class="image-product-container" src="{{product.image}}"></ion-img>
+                <div class="content-product-container">
+                    <ion-text color="secondary" class="product-name"> {{product.name}} </ion-text>
+                    <ion-text color="dark" class="product-price"> {{product.price | currency}} </ion-text>
+                </div>
+        </div>
+        }
+    </div>
+  </div>
+</ion-content>

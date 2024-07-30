@@ -1,3 +1,39 @@
-<p>
-  client-shoppint-cart works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="/client/menu/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Mi carrito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="products-container">
+    @for(product of shoppingCart | async; track product.id) {
+    <div class="product-in-container">
+      <ion-img class="image-product-container" src="{{product.image}}"></ion-img>
+      <div class="content-product-container">
+        <ion-text color="secondary" class="product-name"> {{product.name}} </ion-text>
+        <div class="details-product-container">
+          <ion-text color="secondary" class="product-price"> {{product.price | currency}} </ion-text>
+          <div class="counter-quantity-container">
+            <div class="quantity-counter">
+              <ion-text class="operator" (click)="removeOneFromProductFromCart(product.id)" color="primary">-</ion-text>
+              <ion-text class="product-quantity" color="primary">{{ product.quantity }}</ion-text>
+              <ion-text class="operator" (click)=" addOneToProductFromCart(product.id)" color="primary">+</ion-text>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <div class="footer-content-container">
+    <div class="footer-text-container" >
+      <ion-text color="primary" class="footer-text">Total</ion-text>
+      <ion-text color="primary" class="footer-text">{{totalCart}}</ion-text>
+    </div>
+    <ion-button expand="block" class="custom-button">Comprar ahora</ion-button>
+  </div>
+</ion-content>
