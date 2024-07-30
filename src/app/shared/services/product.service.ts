@@ -40,7 +40,7 @@ export class ProductService {
 
   async getProductsByCategory(category: CATEGORY_PRODUCTS_ID): Promise<IProduct[]> {
     const products = await this.getProducts();
-    return products.filter(product => product.category.id === category);
+    return products.filter(product => product.category === category);
   }
 
   async getProductById(id: string): Promise<IProduct | null> {
