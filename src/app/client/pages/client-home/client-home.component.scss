@@ -105,3 +105,10 @@ ion-badge {
     width: 24px;
     height: 24px;
 }
+
+.touchable.filter-container.active {
+    background-color: var(--ion-color-primary);
+    & .touchable.filter-name {
+        color: var(--ion-color-primary-contrast);
+    }
+}
