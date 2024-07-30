@@ -30,7 +30,12 @@
   width: 65px;
   height: 75px;
 }
-
+.image-product-loaded {
+  width: 80%;
+  height: 160px;
+  margin: auto;
+  object-fit: cover;
+}
 .ion-text-center {
   justify-self: center;
   flex: 1;

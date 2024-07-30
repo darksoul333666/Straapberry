@@ -5,7 +5,9 @@ import { delay } from 'src/app/core/functions/functions';
 import { CATEGORIES, ERRORS_MESSAGE, SUCCESS_MESSAGE } from 'src/app/shared/constants/products.enum';
 import { ROUTES } from 'src/app/shared/constants/routes';
 import { ICategory } from 'src/app/shared/interfaces/products';
+import { MediaCaptureService } from 'src/app/shared/services/media-capture.service';
 import { ProductService } from 'src/app/shared/services/product.service';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-admin-create-or-update-product',
@@ -22,11 +24,36 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
   public messageToast: string = '';
   public isLoading: boolean = false;
   public colorToast: string = COLORS_TOAST.SUCCESS;
+  public isActionSheetOpen: boolean = false;
+  public image: string | undefined;
+  public actionSheetButtons = [
+    {
+      text: 'Toma una foto',
+      data: {
+        action: 'take',
+      },
+      handler: () => {
+        this.handlePressButtonImage();
+      }
+    },
+    {
+      text: 'Elegir de la galería',
+      data: {
+        action: 'pick',
+      },
+      handler: () => {
+        this.handlePressButtonGallery();
+      }
+    },
+  ];
+  
   constructor(
     private readonly route: ActivatedRoute,
     private readonly formBuilder: FormBuilder,
     private readonly productsService: ProductService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly mediaCaptureService: MediaCaptureService,
+    private actionSheetController: ActionSheetController
   ) { }
 
   public ngOnInit() {
@@ -38,7 +65,7 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
     this.registerProductForm = this.formBuilder.group({
       name: [null, [Validators.required]],
       price: [null, [Validators.required]],
-      image: ['https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg', ],
+      image: [null ],
       description: [null, [Validators.required]],
       category: [null, [Validators.required]]
     })
@@ -178,6 +205,16 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
   public ionViewWillLeave(): void {
     this.isToastOpen = false;
     this.registerProductForm.reset();
+  }
+
+  public async handlePressButtonImage(): Promise<void> {
+    const image = await this.mediaCaptureService.takePhoto();
+    this.registerProductForm.patchValue({image});
+  }
+
+  public async handlePressButtonGallery(): Promise<void> {
+    const image = await this.mediaCaptureService.selectPictureFromGallery();
+    this.registerProductForm.patchValue({image});
   }
 
 }

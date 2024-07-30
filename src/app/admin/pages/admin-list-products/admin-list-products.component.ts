@@ -49,7 +49,7 @@ export class AdminListProductsComponent {
    * @description navigate to update product screen, using product id, passed as param
    */
   public onUpdateClick(productId: string): void {
-    this.router.navigate(['/admin/menu']);
+    this.router.navigate([`${ROUTES.CREATE_OR_UPDATE_PRODUCT}/${productId}`]);
   }
 
   /**
