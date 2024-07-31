@@ -25,7 +25,12 @@ export class ClientProfileComponent {
     })
    }
 
-   public ngOnInit() {
+   /**
+   * @function ngOnInit
+   * @description subscribe to router events, call getItemsCart, getProducts, setUsername, addIcons for ionicons
+   * @return {void}
+   */
+   public ngOnInit(): void {
     this.initForm();
    }
 
@@ -47,6 +52,10 @@ export class ClientProfileComponent {
     })
   }
 
+  /**
+   * @function getAccountInfo, get user info by email and set it in form
+   * @returns void
+   */
   public async getAccountInfo() {
     const session = await this.authService.getSession();
     const userLogged = await this.authService.getUserByEmail(session?.email as string);
@@ -92,7 +101,11 @@ export class ClientProfileComponent {
     return this.accountForm.get('password')?.value === this.accountForm.get('confirmPassword')?.value
   }
 
-
+  /**
+   * Function to logout
+   * @returns void
+   * @description navigate to initial page using navigation service
+   */
   public async logout(): Promise<void> {
     await this.authservice.logout();
     this.navigationService.navigateToInitialPage();

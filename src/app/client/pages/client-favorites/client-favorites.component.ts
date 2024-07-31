@@ -27,11 +27,21 @@ export class ClientFavoritesComponent {
     })
   }
 
-  public async ionViewWillEnter() {
+  /** 
+  * ionViewWillEnter is lifecycle hook, call getFavoritesProducts whenever the view is entered
+  * @return {void}
+  */
+  public async ionViewWillEnter(): Promise<void> {
     await this.getFavoritesProducts();
     await this.getItemsCart();
   }
 
+  /** 
+  * @function getFavoritesProducts
+  * @description get favorites products from products service, group them by category, 
+  * and set them in favoriteProductsByCategory
+  * @return {void}
+  */
   public async getFavoritesProducts(): Promise<void> {
     const products = await this.productsService.getProductsFavorites();
     const productsByCategory: CategoryProductsTuple[] = Object.entries(products).map(([key, value]: [string, IProduct[]]) => {
@@ -39,26 +49,53 @@ export class ClientFavoritesComponent {
     });
     this.favoriteProductsByCategory.next(productsByCategory);
   }
-
+  /**
+  * @function addToCart
+  * @description add product to cart, from products service, next call getItemsCart
+  * @param {IProduct} product
+  * @return {void}
+  */
   public async addToCart(product: IProduct): Promise<void> {
     await this.cartService.addProductToCart(product);
     await this.getItemsCart();
   }
 
+  /**
+  * @function removeFromFavorites
+  * @description remove product from favorites, from products service, next call getFavoritesProducts
+  * @param {IProduct} product
+  * @return {void}
+  */
   public async removeFromFavorites(product: IProduct): Promise<void> {
     await this.productsService.addOrRemoveProductToFavorites(product);
     await this.getFavoritesProducts();
   }
 
+  /**
+  * @function goToCart
+  * @description navigate to shopping cart
+  * @return {void}
+  */
   public goToCart(): void {
     this.router.navigate([ROUTES.SHOPPING_CART]);
   }
 
+  /**
+  * @function getItemsCart
+  * @description get items in cart, from cart service, next set totalItemsInCart
+  * @return {void}
+  */
   public async getItemsCart(): Promise<void> {
     this.totalItemsInCart.next(await this.cartService.getItemsCart());
   }
 
 }
 
+/**
+* @interface CategoryProductsTuple
+* @description interface for categoryProductsTuple
+* @type {string}
+* @type {IProduct[]}
+*/
 export type CategoryProductsTuple = [string, IProduct[]];
 
