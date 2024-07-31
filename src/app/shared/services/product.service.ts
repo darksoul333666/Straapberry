@@ -82,7 +82,6 @@ export class ProductService {
   public async checkIfProductIsFavorite(product: IProduct): Promise<boolean> {
     let products = JSON.parse( await this._storage?.get(this.FAVORITES_KEY));
     console.log(product.id);
-    
     return products?.some((productElement: IProduct) => productElement?.id === product?.id);
   }
 }
