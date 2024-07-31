@@ -14,8 +14,21 @@
       }
     </div>
     <div class="content-product-container">
-      <ion-text class="product-name"> {{(product | async)?.name}} </ion-text>
-      <ion-text class="product-price"> {{(product | async)?.price | currency}} </ion-text>
+      <div class="star-container">
+        <div class="name-price-container" >
+          <ion-text class="product-name"> {{(product | async)?.name}} </ion-text>
+          <ion-text class="product-price"> {{(product | async)?.price | currency}} </ion-text>
+        </div>
+        <div class="icon-container">
+          @if(!isFavorite){
+            <ion-icon class="touchable icon-favorite" name="heart" (click)="addToFavorites()"></ion-icon>
+            <ion-text class="text-favorite" color="secondary">Agregar a favoritos</ion-text>
+          } @else { 
+            <ion-icon class="touchable icon-favorite" name="heart-dislike" (click)="removeFromFavorites()"></ion-icon>
+            <ion-text class="text-favorite" color="secondary"> Quitar de favoritos</ion-text>
+          }
+        </div>
+      </div>
       <ion-text class="product-description"> {{(product | async)?.description}}</ion-text>
     </div>
   </div>

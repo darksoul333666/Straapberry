@@ -63,3 +63,33 @@ ion-header {
 .detail-product-container {
  padding-bottom: 100px;
 }
+
+.star-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name-price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: fit-content;
+}
+
+.icon-favorite {
+    font-size: 42px;
+}
+
+.text-favorite {
+    font-size: 12px;
+    width: auto;
+}
