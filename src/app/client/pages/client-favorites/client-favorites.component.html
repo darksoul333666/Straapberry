@@ -1,3 +1,31 @@
-<p>
-  client-favorites works!
-</p>
+<ion-content fullscreen="true">
+  <div class="header-container">
+    <div class="badge-container">
+      <ion-icon (click)="goToCart()" class="touchable icon-medium" name="cart-outline" size="large"></ion-icon>
+      <ion-badge class="badge">{{totalItemsInCart | async}}</ion-badge>
+    </div>
+    <ion-text color="primary" class="title">
+      Tus favoritos
+    </ion-text>
+  </div>
+  <div class="categories-container">
+    @for(tuple of favoriteProductsByCategory | async; track tuple[0]){
+    <ion-text color="secondary" class="subtitle">
+      {{tuple[0]}}
+    </ion-text>
+    @for(product of tuple[1]; track product.id){
+    <div class="product-in-container">
+      <ion-img class="image-product-container" src="{{product.image}}"></ion-img>
+      <div class="content-product-container">
+        <ion-text color="secondary" class="product-name"> {{product.name}} </ion-text>
+        <ion-text color="dark" class="product-price"> {{product.price | currency}} </ion-text>
+        <div class="buttons-container">
+          <ion-icon class="touchable" name="add-circle" (click)="addToCart(product)"></ion-icon>
+          <ion-icon class="touchable" name="heart-dislike" (click)="removeFromFavorites(product)"></ion-icon>
+        </div>
+      </div>
+    </div>
+    }
+    }
+  </div>
+</ion-content>

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { CATEGORY_PRODUCTS_ID, CATEGORY_PRODUCTS_NAME } from 'src/app/shared/constants/products.enum';
-import { ROUTES } from 'src/app/shared/constants/routes';
 import { ICartProduct } from 'src/app/shared/interfaces/cart';
 import { CartService } from 'src/app/shared/services/cart.service';
 

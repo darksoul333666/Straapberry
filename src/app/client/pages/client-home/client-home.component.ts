@@ -22,56 +22,6 @@ export class ClientHomeComponent implements OnInit {
   public totalItemsInCart = new BehaviorSubject<number>(0);
   public routerSubscription: Subscription | undefined;
   public categorySelected: CATEGORY_PRODUCTS_ID | undefined;
-  private initialProducts: IProduct[] = [
-    {
-      id: '1',
-      name: 'Product 1',
-      price: 100,
-      description: 'Product 1 description',
-      category: 1,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '2',
-      name: 'Product 2',
-      price: 100,
-      description: 'Product 2 description',
-      category: 2,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '3',
-      name: 'Product 3',
-      price: 100,
-      description: 'Product 3 description',
-      category: 1,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '4',
-      name: 'Product 4',
-      price: 100,
-      description: 'Product 4 description',
-      category: 5,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '5',
-      name: 'Product 5',
-      price: 100,
-      description: 'Product 5 description',
-      category: 3,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '6',
-      name: 'Product 6',
-      price: 100,
-      description: 'Product 6 description',
-      category: 4,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    }
-  ];
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService,
@@ -79,7 +29,12 @@ export class ClientHomeComponent implements OnInit {
     private readonly cartService: CartService
   ) { }
 
-  ngOnInit() {
+  /**
+  * @function ngOnInit
+  * @description subscribe to router events, call getItemsCart, getProducts, setUsername, addIcons for ionicons
+  * @return {void}
+  */
+  public ngOnInit(): void {
     this.setUsername();
     this.getItemsCart();
     this.getProducts();
@@ -89,37 +44,85 @@ export class ClientHomeComponent implements OnInit {
     });
   }
 
+  /**
+  * @function subscribeToRouterEvents
+  * @description subscribe to router events
+  * @return {void}
+  */
   public subscribeToRouterEvents(): void {
     this.routerSubscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) this.getItemsCart();
+      if (event instanceof NavigationEnd) {
+        this.getItemsCart();
+        this.getProducts();
+        this.setUsername();
+      }
     });
   }
- 
+
+  /**
+  * @function getItemsCart
+  * @description get items in cart, from cart service, next set totalItemsInCart
+  * @return {void}
+  */
   public async getItemsCart(): Promise<void> {
     this.totalItemsInCart.next(await this.cartService.getItemsCart());
   }
 
+  /**
+  * @function setUsername
+  * @description get user by email, from auth service, next call getUserByEmail, and finally set username
+  * @return {void}
+  */
   public async setUsername(): Promise<void> {
     const session = await this.authService.getSession();
     const user = await this.authService.getUserByEmail(session?.email as string);
     this.username = user?.name;
   }
 
+  /**
+  * @function getProducts
+  * @description get products from products service, next set products
+  * @return {void}
+  */
   public async getProducts(): Promise<void> {
     const products = await this.productsService.getProducts();
-    console.log(products);
-    
     this.products.next(products);
   }
 
+  /**
+  * @function ngOnDestroy
+  * @description unsubscribe from router events
+  * @return {void}
+  */
+  public ngOnDestroy(): void {
+    this.routerSubscription?.unsubscribe();
+  }
+
+  /**
+  * @function goToCart
+  * @description navigate to shopping cart
+  * @return {void}
+  */
   public goToCart(): void {
     this.router.navigate([ROUTES.SHOPPING_CART]);
   }
 
+  /**
+  * @function goToProduct
+  * @description navigate to product detail
+  * @param {string} id
+  * @return {void}
+  */
   public goToProduct(id: string): void {
     this.router.navigate([`${ROUTES.DETAIL_PRODUCT}/${id}`]);
   }
 
+  /**
+  * @function onFilterClick
+  * @description filter products by category
+  * @param {CATEGORY_PRODUCTS_ID} id
+  * @return {void}
+  */
   public async onFilterClick(id: CATEGORY_PRODUCTS_ID): Promise<void> {
     if (this.categorySelected === id) {
       this.categorySelected = undefined;
@@ -129,5 +132,15 @@ export class ClientHomeComponent implements OnInit {
     this.categorySelected = id;
     const products = await this.productsService.getProductsByCategory(id);
     this.products.next(products);
+  }
+
+  /**
+  * @function addToFavorites
+  * @description add product to favorites, from products service
+  * @param {IProduct} product
+  * @return {void}
+  */
+  public addToFavorites(product: IProduct): void {
+    this.productsService.addOrRemoveProductToFavorites(product);
   }
 }

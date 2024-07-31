@@ -56,11 +56,21 @@ export class AdminCreateOrUpdateProductComponent  implements OnInit {
     private actionSheetController: ActionSheetController
   ) { }
 
+  /**
+   * @returns void
+   * @function ngOnInit - initialize form
+   * @description initialize form
+   */
   public ngOnInit() {
    this.setModeScreenAndTitle();
    this.initForm();
   }
 
+  /**
+   * @returns void
+   * @function initForm - initialize form
+   * @description initialize form
+   */
   public initForm(): void {
     this.registerProductForm = this.formBuilder.group({
       name: [null, [Validators.required]],

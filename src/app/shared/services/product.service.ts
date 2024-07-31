@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
-import { CATEGORY_PRODUCTS_ID, ErrorProducts } from '../constants/products.enum';
-import { IProduct } from '../interfaces/products';
+import { CATEGORIES_NAME_BY_ID, CATEGORY_PRODUCTS_ID, CATEGORY_PRODUCTS_NAME, ErrorProducts } from '../constants/products.enum';
+import { IProduct, IProductsFavorites } from '../interfaces/products';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class ProductService {
   private _storage: Storage | null = null;
   private PRODUCTS_KEY = 'products';
-
+  private FAVORITES_KEY = 'favorites';
   constructor(private storage: Storage) {
     this.init();
   }
@@ -54,5 +54,34 @@ export class ProductService {
     if (index == -1)  throw new Error(ErrorProducts.PRODUCT_NOT_FOUND);
     products.splice(index, 1);
     await this._storage?.set(this.PRODUCTS_KEY, JSON.stringify(products));
+  }
+
+  public async addOrRemoveProductToFavorites(product: IProduct): Promise<void> {
+    let products = JSON.parse( await this._storage?.get(this.FAVORITES_KEY));
+    const index = products.findIndex((productElement: IProduct) => productElement.id === product.id);
+    if (index > -1) {
+      products.splice(index, 1);
+    } else {
+      products.push(product);
+    }
+    await this._storage?.set(this.FAVORITES_KEY, JSON.stringify(products));
+  }
+
+  public async getProductsFavorites(): Promise<IProductsFavorites> {
+    let products = JSON.parse( await this._storage?.get(this.FAVORITES_KEY));
+     return products.reduce((acc: { [categoryName: string]: IProduct[]; }, product: IProduct) => {
+      if (!acc[CATEGORIES_NAME_BY_ID[product.category ]]) {
+        acc[CATEGORIES_NAME_BY_ID[product.category ]] = [product];
+      } else {
+        acc[CATEGORIES_NAME_BY_ID[product.category ]].push(product);
+      } 
+      return acc;
+    }, {});
+  }
+
+  public async checkIfProductIsFavorite(product: IProduct): Promise<boolean> {
+    let products = JSON.parse( await this._storage?.get(this.FAVORITES_KEY));
+    console.log(product.id);
+    return products?.some((productElement: IProduct) => productElement?.id === product?.id);
   }
 }
