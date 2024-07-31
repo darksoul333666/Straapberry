@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { addIcons } from 'ionicons';
+import { heart, heartDislike } from 'ionicons/icons';
 import { BehaviorSubject } from 'rxjs';
 import { IProduct } from 'src/app/shared/interfaces/products';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -10,18 +12,25 @@ import { ProductService } from 'src/app/shared/services/product.service';
   templateUrl: './client-detail-product.component.html',
   styleUrls: ['./client-detail-product.component.scss'],
 })
-export class ClientDetailProductComponent implements OnInit {
+export class ClientDetailProductComponent {
   productId: string = '';
   product = new BehaviorSubject<IProduct | undefined>(undefined);
+  public isFavorite: boolean = false;
   constructor(
     private readonly productsService: ProductService,
     private readonly cartService: CartService,
     private readonly route: ActivatedRoute
-  ) { }
+  ) { 
+    addIcons({
+      heart,
+      heartDislike
+    })
+  }
 
-  ngOnInit() {
+  async ionViewWillEnter() {
     this.getIdProduct(this.productId);
-    this.getProduct(this.productId);
+    await this.getProduct(this.productId);
+    await this.checkIfProductIsFavorite();
   }
 
   public async getIdProduct(productId: string): Promise<void> {
@@ -37,4 +46,17 @@ export class ClientDetailProductComponent implements OnInit {
     this.product.next(product as IProduct);
   }
 
+  public async addToFavorites(): Promise<void> {
+    await this.productsService.addOrRemoveProductToFavorites(this.product.value as IProduct);
+    await this.checkIfProductIsFavorite();
+  }
+
+  public async checkIfProductIsFavorite(): Promise<void> {
+    this.isFavorite = await this.productsService.checkIfProductIsFavorite(this.product.value as IProduct);
+  }
+
+  public async removeFromFavorites(): Promise<void> {
+    await this.productsService.addOrRemoveProductToFavorites(this.product.value as IProduct);
+    await this.checkIfProductIsFavorite();
+  }
 }

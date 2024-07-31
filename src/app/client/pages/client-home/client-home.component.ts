@@ -22,56 +22,6 @@ export class ClientHomeComponent implements OnInit {
   public totalItemsInCart = new BehaviorSubject<number>(0);
   public routerSubscription: Subscription | undefined;
   public categorySelected: CATEGORY_PRODUCTS_ID | undefined;
-  private initialProducts: IProduct[] = [
-    {
-      id: '1',
-      name: 'Product 1',
-      price: 100,
-      description: 'Product 1 description',
-      category: 1,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '2',
-      name: 'Product 2',
-      price: 100,
-      description: 'Product 2 description',
-      category: 2,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '3',
-      name: 'Product 3',
-      price: 100,
-      description: 'Product 3 description',
-      category: 1,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '4',
-      name: 'Product 4',
-      price: 100,
-      description: 'Product 4 description',
-      category: 5,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '5',
-      name: 'Product 5',
-      price: 100,
-      description: 'Product 5 description',
-      category: 3,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    },
-    {
-      id: '6',
-      name: 'Product 6',
-      price: 100,
-      description: 'Product 6 description',
-      category: 4,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-    }
-  ];
   constructor(
     private readonly router: Router,
     private readonly authService: AuthService,
@@ -129,5 +79,9 @@ export class ClientHomeComponent implements OnInit {
     this.categorySelected = id;
     const products = await this.productsService.getProductsByCategory(id);
     this.products.next(products);
+  }
+
+  public addToFavorites(product: IProduct): void {
+    this.productsService.addOrRemoveProductToFavorites(product);
   }
 }

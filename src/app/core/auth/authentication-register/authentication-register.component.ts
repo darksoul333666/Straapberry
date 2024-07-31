@@ -50,7 +50,9 @@ export class AuthenticationRegisterComponent  implements OnInit{
        await delay(2000);
        this.loading = false;
        await delay(1000);
-       this.navigationService.navigateToInitialPage();
+       await this.authService.login({...this.registerForm.value, 
+        password: this.registerForm.value.confirmPassword});
+       await this.navigationService.navigateToInitialPage();
     } catch (error) {
       this.handleRegisterError(error);
     }

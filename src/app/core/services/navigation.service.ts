@@ -18,6 +18,8 @@ export class NavigationService {
   public async getInitialRoute(): Promise<string> {
     const session = await this.authService.getSession();
     const userLogged = await this.authService.getUserByEmail(session?.email as string);
+    console.log("userLogged", userLogged);
+    
     if (!userLogged) {
       return ROUTES.LOGIN
     }

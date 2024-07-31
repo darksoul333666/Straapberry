@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClientFavoritesComponent } from './client-favorites.component';
 import { RouterModule, Routes } from '@angular/router';
-
+import { IonicModule } from '@ionic/angular';
 const routes: Routes = [
   {
     path: '',
@@ -13,6 +13,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [ClientFavoritesComponent],
   imports: [
+    IonicModule,
     CommonModule,
     RouterModule.forChild(routes)
   ],
