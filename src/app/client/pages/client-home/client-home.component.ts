@@ -41,7 +41,11 @@ export class ClientHomeComponent implements OnInit {
 
   public subscribeToRouterEvents(): void {
     this.routerSubscription = this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) this.getItemsCart();
+      if (event instanceof NavigationEnd) {
+        this.getItemsCart();
+        this.getProducts();
+        this.setUsername();
+      }
     });
   }
  
@@ -57,8 +61,6 @@ export class ClientHomeComponent implements OnInit {
 
   public async getProducts(): Promise<void> {
     const products = await this.productsService.getProducts();
-    console.log(products);
-    
     this.products.next(products);
   }
 

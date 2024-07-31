@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { IProduct } from '../interfaces/products';
 import { ICartProduct } from '../interfaces/cart';
-import { CATEGORY_PRODUCTS_NAME, CATEGORY_PRODUCTS_ID } from '../constants/products.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -10,63 +9,6 @@ import { CATEGORY_PRODUCTS_NAME, CATEGORY_PRODUCTS_ID } from '../constants/produ
 export class CartService {
   private CART_KEY = 'cart';
   private _storage: Storage | null = null;
-
-  private initialProducts: ICartProduct[] = [
-    {
-      id: '1',
-      name: 'Product 1',
-      price: 100,
-      description: 'Product 1 description',
-      category: 1,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-      quantity: 1
-    },
-    {
-      id: '2',
-      name: 'Product 2',
-      price: 100,
-      description: 'Product 2 description',
-      category: 1,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-      quantity: 1
-    },
-    {
-      id: '3',
-      name: 'Product 3',
-      price: 100,
-      description: 'Product 3 description',
-      category: 3,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-      quantity: 1
-    },
-    {
-      id: '4',
-      name: 'Product 4',
-      price: 100,
-      description: 'Product 4 description',
-      category: 4,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-      quantity: 1
-    },
-    {
-      id: '5',
-      name: 'Product 5',
-      price: 100,
-      description: 'Product 5 description',
-      category: 5,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-      quantity: 1
-    },
-    {
-      id: '6',
-      name: 'Product 6',
-      price: 100,
-      description: 'Product 6 description',
-      category: 6,
-      image: 'https://ocelot.com.mx/wp-content/uploads/2023/04/teclado-mecanico-switch-rojo-1024x677.jpg',
-      quantity: 1
-    }
-  ];
 
   constructor(private storage: Storage) {
     this.init();

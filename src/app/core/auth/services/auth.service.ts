@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage-angular';
 import * as bcrypt from 'bcryptjs';
 import { IUser } from '../interfaces/user';
 import { ErrorsLogin, ErrorsRegister } from '../constants/auth.enum';
+import { CartService } from 'src/app/shared/services/cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,10 @@ export class AuthService {
   private USERS_KEY = 'users';
   private SALT_ROUNDS = 10;
 
-  constructor(private storage: Storage) {
+  constructor(
+    private storage: Storage,
+    private cartService: CartService
+  ) {
     this.init();
   }
 
@@ -50,6 +54,8 @@ export class AuthService {
 
   async logout(): Promise<void> {
     await this._storage?.remove(this.SESSION_KEY);
+    await this.cartService.resetCart();
+
   }
 
   async getSession(): Promise<IUser | null> {
@@ -81,5 +87,12 @@ export class AuthService {
   async getUserByEmail(email: string): Promise<IUser | null> {
     const users = await this.getUsers();
     return users.find(user => user.email === email) || null;
+  }
+
+  async updateUser(user: IUser): Promise<void> {
+    const users = await this.getUsers();
+    const index = users.findIndex(u => u.email === user.email);
+    users[index] = user;
+    await this._storage?.set(this.USERS_KEY, JSON.stringify(users));
   }
 }
