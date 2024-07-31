@@ -1,0 +1,24 @@
+@import url('../../../../theme/variables.scss');
+ion-content {
+    --background: var(--ion-color-primary-contrast);
+}
+
+.header-container {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    width: 100%;
+}
+
+.content-account-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    padding-top: 0;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 24px;
+}

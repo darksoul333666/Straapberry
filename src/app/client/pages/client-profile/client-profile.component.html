@@ -1,3 +1,34 @@
-<p>
-  client-profile works!
-</p>
+<ion-content fullscreen="true">
+  <div class="header-container">
+      <ion-icon (click)="logout()" class="touchable icon-medium" name="log-out" size="large"></ion-icon>
+  </div>
+  <div class="content-account-container">
+    <ion-text color="primary" class="title">
+      Información de cuenta
+     </ion-text>
+     <div class="content-container">
+      <form [formGroup]="accountForm" class="form-container">
+        <div class="input-container">
+          <ion-input class="custom-input" type="text" formControlName="name" required placeholder="Nombre"></ion-input>
+        </div>
+        <div class="input-container">
+          <ion-input class="custom-input" type="text" formControlName="email" required placeholder="Email"></ion-input>
+        </div>
+        <div class="input-container">
+          <ion-input class="custom-input" type="password" formControlName="password" required
+            placeholder="Contraseña"></ion-input>
+        </div>
+        <div class="input-container">
+          <ion-input class="custom-input" type="password" formControlName="confirmPassword" required
+            placeholder="Confirmar contraseña"></ion-input>
+        </div>
+        <div class="input-container">
+          <ion-button (click)="onUpdateClick()" [disabled]="!passwordsMatch() || !accountForm.valid"
+            class="custom-button button-login" type="submit" shape="round">Actualizar cuenta</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>
+<ion-loading [isOpen]="loading" duration="3000" message="Actualizando usuario" [duration]="3000"
+  spinner="circles"></ion-loading>
